@@ -1,0 +1,1203 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+:root {
+  --cream:      #FAF8F4;
+  --parchment:  #F2EDE3;
+  --warm-white: #FFFCF8;
+
+  --sage:       #2D3B26; 
+  --ink:        #607456; 
+  --ink-mid:    #607456; 
+  --ink-soft:   #7A8F70;
+  
+  --gold:       #B8965A;
+  --gold-light: #D4B07A;
+  --gold-pale:  rgba(184,150,90,0.12);
+  --border:     rgba(184,150,90,0.22);
+  --border-soft:rgba(184,150,90,0.1);
+  --shadow:     rgba(30,28,24,0.06);
+  --radius:     2px;
+  --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── BODY ─── */
+body {
+  font-family: 'Jost', sans-serif;
+  background-color: var(--cream);
+  background-image:
+    linear-gradient(rgba(250,248,244,0.55), rgba(250,248,244,0.88)),
+    url('Sfondo.png');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 32px 100px;
+  overflow: hidden;
+}
+
+/* Decorative corner lines */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0.3;
+}
+.hero::before {
+  top: 40px; left: 40px;
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+  animation: fade-in 2s ease forwards 2s;
+  opacity: 0;
+}
+.hero::after {
+  bottom: 100px; right: 40px;
+  border-bottom: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+  animation: fade-in 2s ease forwards 2.2s;
+  opacity: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-pre {
+  font-family: 'Italianno', cursive;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  letter-spacing: 0.1em;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: rise 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+}
+
+.hero-names {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  font-size: clamp(4.2rem, 16vw, 8.5rem);
+  line-height: 1.2;
+  color: #849d79;
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4); 
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  animation: rise 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
+  padding: 10px 0;
+}
+
+.hero-names .amp {
+  font-size: 0.5em;
+  color: #8fa699; 
+  text-shadow: none; 
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px auto;
+  width: min(220px, 65vw);
+  opacity: 0;
+  animation: rise 1.2s ease forwards 1.1s;
+}
+.hero-divider span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+.hero-divider i { font-style: normal; color: var(--gold); font-size: 0.75rem; }
+
+.hero-sub {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 8vw, 4rem);
+  line-height: 1.2;
+  color: #849d79;
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  white-space: nowrap;
+  opacity: 0;
+  animation: rise 1.2s ease forwards 1.3s;
+}
+
+.scroll-nudge {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fade-in 1.2s ease forwards 2.2s;
+}
+.scroll-nudge .line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: drop-line 2.2s ease-in-out infinite;
+}
+@keyframes drop-line {
+  0%,100% { transform: scaleY(0.2); opacity: 0.3; transform-origin: top; }
+  50%      { transform: scaleY(1);   opacity: 0.9; transform-origin: top; }
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 80px 28px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-soft);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.section.visible { opacity: 1; transform: translateY(0); }
+.section:last-of-type { border-bottom: none; }
+
+@media (min-width: 540px) { .section { padding: 96px 48px; } }
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Italianno', cursive !important;
+  font-size: clamp(2rem, 6vw, 2.5rem) !important;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none !important;
+  color: #8fa699 !important; /* Scurito al punto giusto per dare contrasto e ottima leggibilità */
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 8.5vw, 3.6rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+.section h2 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.section > p {
+  font-family: 'Italianno', cursive !important;
+  font-weight: 400 !important; /* Riportato a un peso più leggero e sinuoso */
+  font-size: clamp(2rem, 6.5vw, 2.7rem) !important;
+  line-height: 1.4;
+  color: #8fa699 !important; /* Sostituito con un verde salvia più chiaro e delicato */
+  text-shadow: 1px 1px 1px rgba(255, 252, 248, 0.8); /* Ombra finissima per dare un pelo di stacco */
+  margin-bottom: 20px;
+}
+
+/* ─── DATE CARD ─── */
+.date-card {
+  margin: 40px auto 0;
+  padding: 36px 28px;
+  border: 1px solid var(--border);
+  background: rgba(255,252,248,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+  box-shadow: 0 8px 40px var(--shadow), 0 0 0 4px var(--border-soft);
+  position: relative;
+}
+
+.date-card::before,
+.date-card::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+.date-card::before { top: -1px; left: -1px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.date-card::after  { bottom: -1px; right: -1px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+.date-card .dc-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 14px;
+}
+.date-card .dc-day {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4.5rem, 18vw, 6rem);
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+.date-card .dc-month {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 10px 0 18px;
+}
+.date-card .dc-thin {
+  width: 28px; height: 1px;
+  background: var(--gold-light);
+  margin: 0 auto 16px;
+  opacity: 0.5;
+}
+.date-card .dc-time {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+  font-weight: 300;
+  color: var(--ink-mid);
+  letter-spacing: 0.01em;
+}
+.date-card .dc-place {
+  margin-top: 12px;
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.74rem, 2.6vw, 0.8rem);
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+
+/* ─── INFO LIST ─── */
+.info-list {
+  margin-top: 38px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+.info-item {
+  padding: 26px 24px;
+  border: 1px solid var(--border);
+  background: rgba(255,252,248,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: box-shadow var(--transition), transform var(--transition);
+  position: relative;
+}
+.info-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.info-item:hover::before { opacity: 1; }
+.info-item:hover {
+  box-shadow: 0 4px 24px var(--shadow);
+  transform: translateX(2px);
+}
+
+@media (min-width: 400px) { .info-item { padding: 28px 28px; } }
+
+.info-item .q {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 4.5vw, 1.35rem);
+  font-weight: 500;
+  color: var(--ink); /* Mantiene il colore principale */
+  margin-bottom: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.info-item .a {
+  font-family: 'Jost', sans-serif; /* Cambiato in un font moderno e super leggibile */
+  font-size: clamp(0.88rem, 3vw, 0.98rem); /* Dimensione calibrata per i testi informativi */
+  font-weight: 300; /* Leggero ed elegante */
+  line-height: 1.8; /* Più respiro tra le righe */
+  color: var(--ink-soft); /* Un tono di salvia leggermente più morbido per non appesantire */
+}
+
+.info-item .a strong {
+  font-weight: 500;
+  color: var(--ink); /* Il "Dress code —" iniziale rimane bello evidente */
+  letter-spacing: 0.02em;
+}
+
+/* ─── ALLERGY FORM ─── */
+.allergy-form {
+  margin-top: 38px;
+  width: 100%;
+  text-align: left;
+}
+.allergy-form label {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.allergy-form label:first-of-type { margin-top: 0; }
+
+.allergy-name-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.allergy-name-row input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background: rgba(255,252,248,0.95);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.88rem, 3.2vw, 0.94rem);
+  color: var(--ink);
+  outline: none;
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -webkit-appearance: none;
+}
+.allergy-name-row input::placeholder { color: var(--ink-soft); }
+.allergy-name-row input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-pale);
+}
+
+.allergy-form textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  background: rgba(255,252,248,0.95);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.88rem, 3.2vw, 0.94rem);
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -webkit-appearance: none;
+}
+.allergy-form textarea::placeholder { color: var(--ink-soft); }
+.allergy-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-pale);
+}
+
+.allergy-submit {
+  margin-top: 20px;
+  width: 100%;
+  padding: 17px 32px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.allergy-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.07) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.allergy-submit:hover::before { transform: translateX(100%); }
+.allergy-submit:hover {
+  background: var(--gold);
+  box-shadow: 0 4px 20px rgba(184,150,90,0.3);
+  transform: translateY(-1px);
+}
+.allergy-submit:active { transform: translateY(0); }
+.allergy-submit.sent {
+  background: var(--sage);
+  pointer-events: none;
+}
+
+.allergy-note {
+  margin-top: 12px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  text-align: center;
+  min-height: 20px;
+}
+
+/* ─── THANK YOU / GIFT ─── */
+.thank-block {
+  margin: 28px 0;
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  background: rgba(255,252,248,0.9);
+  position: relative;
+}
+.thank-block::before,
+.thank-block::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+}
+.thank-block::before { top: -1px; left: -1px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+.thank-block::after  { bottom: -1px; right: -1px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+.thank-block p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 3.2vw, 1rem);
+  line-height: 2;
+  color: var(--ink-mid);
+}
+
+.gift-link {
+  margin-top: 24px;
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.88rem, 3vw, 0.95rem);
+  font-weight: 300;
+  color: var(--ink-mid);
+  line-height: 2;
+}
+.gift-link a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184,150,90,0.3);
+  padding-bottom: 1px;
+  transition: border-color var(--transition), color var(--transition);
+}
+.gift-link a:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 60px 28px 50px;
+  border-top: 1px solid var(--border-soft);
+}
+.foot-names {
+  font-family: 'Great Vibes', cursive !important; /* Lo stesso font dell'inizio della pagina */
+  font-size: clamp(2.5rem, 8vw, 3.8rem) !important; /* Dimensione elegante per la firma finale */
+  font-weight: 400;
+  color: #849d79 !important; /* Lo stesso Verde Salvia CHIARO dei nomi nell'Hero */
+  text-shadow: 1px 1px 3px rgba(45, 59, 38, 0.3) !important; /* Ombra di contrasto delicata */
+  text-transform: none !important; /* Rimuove l'eventuale maiuscolo forzato */
+  margin-bottom: 5px;
+  letter-spacing: 0.02em;
+}
+.foot-date {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── GIFT PAGE (lista-nozze.html) ─── */
+.gift-body {
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 252, 248, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 80px rgba(30,28,24,0.1), 0 0 0 1px var(--border-soft);
+  max-width: 440px;
+  width: 100%;
+  padding: 52px 40px 44px;
+  text-align: center;
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+}
+.card::before { top: -1px; left: -1px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.card::after  { bottom: -1px; right: -1px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+@media (max-width: 480px) { .card { padding: 40px 28px 36px; } }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--sage);
+  text-decoration: none;
+  margin-bottom: 44px;
+  transition: color var(--transition);
+}
+.back-link::before {
+  content: '←';
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  transition: transform var(--transition);
+}
+.back-link:hover { color: var(--ink); }
+.back-link:hover::before { transform: translateX(-3px); }
+
+.eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.56rem;
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 16px;
+}
+
+.card h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 8vw, 3.2rem);
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+.card h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.intro {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.88rem, 3vw, 0.96rem);
+  line-height: 2;
+  color: var(--ink-mid);
+  margin-bottom: 32px;
+}
+
+.div-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 auto 32px;
+  width: min(180px, 70%);
+}
+.div-line span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+.div-line i { font-style: normal; color: var(--gold); font-size: 0.7rem; }
+
+/* ─── PAYPAL BLOCK ─── */
+.paypal-block {
+  padding: 30px 24px;
+  border: 1px solid var(--border);
+  background: var(--parchment);
+  margin-bottom: 32px;
+}
+
+.paypal-names {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.paypal-rule {
+  width: 28px; height: 1px;
+  background: var(--gold-light);
+  margin: 0 auto 18px;
+}
+
+.paypal-caption {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.82rem, 2.8vw, 0.88rem);
+  font-weight: 300;
+  color: var(--ink-mid);
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.paypal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #003087;
+  color: white;
+  text-decoration: none;
+  padding: 15px 32px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 12px rgba(0,48,135,0.2);
+}
+.paypal-btn:hover {
+  background: #002169;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,48,135,0.28);
+}
+.paypal-btn:active { transform: translateY(0); }
+
+.paypal-btn-text {
+  font-size: 0.78rem;
+}
+
+.paypal-disclaimer {
+  margin-top: 16px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.page-foot {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ─── SPECIFIC WEDDING DAY STYLE ─── */
+.wedding-day {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  line-height: 1.2;
+  color: #849d79 !important;
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  letter-spacing: 0.02em;
+  text-transform: none !important;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+/* ─── KEYFRAMES ─── */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 0.3; }
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 2px; }
+
+/* ─── SELECTION ─── */
+::selection {
+  background: var(--gold-pale);
+  color: var(--ink);
+}
+/* ─── SPECIFIC WEDDING DAY STYLE ─── */
+.wedding-day {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
+  line-height: 1.1;
+  color: #849d79 !important; /* "Wedding" diventa Verde Salvia CHIARO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  letter-spacing: 0.02em;
+  text-transform: none !important;
+}
+
+/* Questo gestisce la parola "Day" che nell'HTML è racchiusa dentro <em> */
+.wedding-day em {
+  font-family: 'Great Vibes', cursive !important;
+  font-style: normal !important;
+  color: #8fa699 !important; /* "Day" diventa Verde Salvia più SCURO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
+}
+.info-title {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
+  line-height: 1.2;
+  color: #849d79 !important; /* "Info" in Verde Salvia CHIARO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em;
+  white-space: nowrap; /* Forza la scritta a stare tutta attaccata sulla stessa riga */
+}
+
+/* Gestisce la parola "Utili" (dentro lo span) */
+.info-title span {
+  font-family: 'Great Vibes', cursive !important;
+  color: #8fa699 !important; /* "Utili" in Verde Salvia più SCURO (come Day) */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
+  margin-left: 12px; /* Dà il giusto spazio tra Info e Utili */
+}
+/* ─── SPECIFIC ALLERGY TITLE STYLE ─── */
+.allergy-title {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
+  line-height: 1.1;
+  color: #849d79 !important; /* "Allergie &" diventa Verde Salvia CHIARO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em;
+}
+
+/* Gestisce la parola "Intolleranze" (dentro lo span) */
+.allergy-title span {
+  font-family: 'Great Vibes', cursive !important;
+  color: #8fa699 !important; /* "Intolleranze" diventa Verde Salvia più SCURO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
+}
+/* ─── SPECIFIC THANKS TITLE STYLE ─── */
+.thanks-title {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
+  line-height: 1.1;
+  color: #849d79 !important; /* "Grazie" in Verde Salvia CHIARO come Fabrizio ed Elvira */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em;
+  margin-bottom: 22px;
+}
+/* ─── RESET E FIX DEFINITIVO LISTA NOZZE ─── */
+
+/* 1. Scritta "Lista nozze" in alto */
+.gift-body .card .eyebrow {
+  font-family: 'Italianno', cursive !important;
+  font-size: clamp(2rem, 6vw, 2.5rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: none !important;
+  color: #8fa699 !important; /* Verde Salvia MEDIO */
+  margin-bottom: 5px !important;
+}
+
+/* 2. Titolo principale "Un piccolo" */
+.gift-body .card h1 {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400 !important;
+  font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
+  line-height: 1.1 !important;
+  color: #849d79 !important; /* Verde Salvia CHIARO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 3. Parola "dono" (dentro il tag em dell'h1) */
+.gift-body .card h1 em {
+  font-family: 'Great Vibes', cursive !important;
+  font-style: normal !important;
+  color: #8fa699 !important; /* Verde Salvia più SCURO */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
+}
+
+/* 4. Frase di introduzione sotto il titolo */
+.gift-body .card .intro {
+  font-family: 'Italianno', cursive !important;
+  font-weight: 400 !important;
+  font-size: clamp(2rem, 6.5vw, 2.7rem) !important;
+  line-height: 1.4 !important;
+  color: #7a8f70 !important; /* Verde Salvia MEDIO */
+  text-shadow: 1px 1px 2px rgba(255, 252, 248, 0.9) !important;
+}
+
+/* 5. Nomi sopra il blocco PayPal */
+.gift-body .card .paypal-block .paypal-names {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2.2rem, 6vw, 3.2rem) !important;
+  font-weight: 400 !important;
+  color: #849d79 !important; /* Verde Salvia CHIARO */
+  text-shadow: 1px 1px 3px rgba(45, 59, 38, 0.2) !important;
+  text-transform: none !important;
+}
+/* ─── RESET GLOBALE CON SIZE CALIBRATI: LOOK 100% CORSIVO ─── */
+
+/* Forza il font e rimuove il maiuscolo su tutto il sito */
+html, body, div, p, span, h1, h2, h3, a, button, section, label, input, textarea {
+  font-family: 'Great Vibes', cursive !important;
+  text-transform: none !important;
+}
+
+/* 1. I TITOLI PRINCIPALI (Wedding Day, Allergie & Intolleranze, Un piccolo Dono, Grazie) */
+h1, h2, .gift-title {
+  font-size: clamp(3.5rem, 11vw, 5rem) !important;
+  line-height: 1.1 !important;
+  font-weight: 400 !important;
+}
+
+/* 2. LE MICRO-SCRITTE SOPRA I TITOLI (Il Giorno, Tutto quello che ti serve, Lista Nozze) */
+.section-tag, .gift-tag, .eyebrow {
+  font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 4px !important;
+}
+
+/* 3. LE FRASI DESCRITTIVE (Ci sposiamo finalmente, Se hai allergie, La vostra presenza...) */
+.section > p, .gift-body .card .intro {
+  font-size: clamp(1.8rem, 5.5vw, 2.3rem) !important;
+  line-height: 1.3 !important;
+  font-weight: 400 !important;
+}
+
+/* 4. LE DOMANDE DELLE INFO UTILI (Come ci si veste?, Allergie e intolleranze) */
+.info-item .q {
+  font-size: clamp(2rem, 6vw, 2.5rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 6px !important;
+}
+
+/* 5. LE RISPOSTE DELLE INFO UTILI (I testi dentro i blocchetti) */
+.info-item .a {
+  font-size: clamp(1.5rem, 4.5vw, 1.8rem) !important;
+  line-height: 1.4 !important;
+  font-weight: 400 !important;
+}
+
+/* 6. I TESTI DEL BLOCCO PAYPAL (Diciture sopra e sotto il bottone) */
+.paypal-names {
+  font-size: clamp(2.2rem, 6.5vw, 3rem) !important;
+}
+.paypal-caption, .paypal-disclaimer {
+  font-size: clamp(1.4rem, 4vw, 1.7rem) !important;
+  line-height: 1.3 !important;
+}
+
+/* 7. I BOTTONI E LINK DI NAVIGAZIONE (PayPal, RSVP, Torna all'invito) */
+.paypal-btn .paypal-btn-text, .rsvp-btn, button, .back-link {
+  font-size: clamp(1.4rem, 4vw, 1.8rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 8. FIX SPECIFICO PER IL FOOTER DELLA LISTA NOZZE */
+.gift-body .card .page-foot {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.8rem, 5.5vw, 2.4rem) !important;
+  text-transform: none !important; /* Rimuove il maiuscolo che distrugge il corsivo */
+  letter-spacing: 0.02em !important; /* Spaziatura naturale per far unire le lettere */
+  color: #8fa699 !important; /* Verde Salvia MEDIO, super elegante */
+  margin-top: 35px !important;
+  line-height: 1.2 !important;
+  opacity: 1 !important;
+}
+/* Corregge l'inclinazione del punto esclamativo in Great Vibes creando lo spazio visivo */
+.exclamation-space {
+  margin-right: 14px !important; /* Spinge via la parola successiva */
+  display: inline-block;
+}
+
+/* ─── FIX MICRO-REGOLAZIONE: DATA E CHIESA SNELLI ─── */
+
+/* 1. Scritta "Cerimonia" (poco più grande del testo normale) */
+.date-card .dc-label {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.6rem, 4.5vw, 1.9rem) !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  color: var(--sage) !important;
+  margin-bottom: 2px !important;
+}
+
+/* 2. Il numero "18" (ridimensionato per non essere gigante) */
+.date-card .dc-day {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(3.2rem, 10vw, 3.8rem) !important;
+  line-height: 1 !important;
+  color: #849d79 !important;
+}
+
+/* 3. Il mese "Settembre · 2026" (molto equilibrato) */
+.date-card .dc-month {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  color: #8fa699 !important;
+  margin: 2px 0 10px !important;
+}
+
+/* 4. L'orario "Venerdì · Ore 16:00" */
+.date-card .dc-time {
+  font-family: 'Great Vibes', cursive !important;
+  font-style: normal !important;
+  font-size: clamp(1.6rem, 4.5vw, 1.9rem) !important;
+  color: var(--ink) !important;
+}
+
+/* 5. Nome e indirizzo della Chiesa (giusto un filo sopra il testo dei blocchetti) */
+.date-card .dc-place {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.4rem, 4vw, 1.6rem) !important;
+  line-height: 1.3 !important;
+  color: var(--ink-soft) !important;
+  margin-top: 8px !important;
+}
+/* ─── FIX SOTTOBLOCCO GRAZIE ─── */
+
+/* Forza il font e regola la dimensione per la frase dentro il riquadro */
+.thank-block p {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400 !important;
+  font-size: clamp(1.8rem, 5.5vw, 2.3rem) !important;
+  line-height: 1.3 !important;
+  color: var(--ink-mid) !important;
+}
+
+/* Forza il font e regola la dimensione per la frase con il link alla lista nozze */
+.gift-link {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400 !important;
+  font-size: clamp(1.8rem, 5.5vw, 2.2rem) !important;
+  line-height: 1.4 !important;
+  color: var(--ink-mid) !important;
+  margin-top: 20px !important;
+}
+
+/* Rende corsivo ed elegante anche il link cliccabile */
+.gift-link a {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 100% !important;
+  color: var(--gold) !important;
+}
+/* ─── FIX MODULO ALLERGIE ─── */
+
+/* Applica il look VERDE SALVIA CHIARO a tutti i titoli del modulo (Nome e Allergie) */
+.allergy-form label {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2.2rem, 6.5vw, 2.8rem) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  color: #849d79 !important; /* Verde Salvia CHIARO dell'Hero */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important; /* Stessa ombra */
+  margin-bottom: 8px !important;
+  margin-top: 20px !important; /* Dà il giusto spazio sopra ogni titolo */
+  display: block !important;
+}
+
+/* Rimuove il margine superiore solo dal primissimo titolo per non farlo scendere troppo */
+.allergy-form label:first-of-type {
+  margin-top: 0 !important;
+}
+/* 2. Il testo che digita l'utente e il placeholder nel campo "Il tuo nome" */
+.allergy-name-row input,
+.allergy-name-row input::placeholder {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.6rem, 4.5vw, 2rem) !important;
+  line-height: 1 !important;
+  color: var(--ink) !important;
+}
+
+/* 3. Il testo che digita l'utente e il placeholder nel box grande delle allergie */
+.allergy-form textarea,
+.allergy-form textarea::placeholder {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.6rem, 4.5vw, 2rem) !important;
+  line-height: 1.2 !important;
+  color: var(--ink) !important;
+}
+
+/* Regolazione altezza minima per dare respiro al corsivo nel box grande */
+.allergy-form textarea {
+  min-height: 140px !important;
+  padding: 12px 18px !important;
+}
+
+/* 4. Il testo all'interno del bottone "Invia segnalazione" */
+.allergy-submit {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.6rem, 4.5vw, 2rem) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  padding: 12px 32px !important; /* Calibrato per contenere bene il nuovo font */
+}
+
+/* 5. Il messaggio di conferma o di errore che appare sotto il bottone */
+.allergy-note {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.6rem, 4.5vw, 1.9rem) !important;
+  margin-top: 10px !important;
+}
+/* ─── FIX SOTTOBLOCCO INFO UTILI (TESTI INTERNI) ─── */
+
+/* Forza il font e la dimensione corretta per le risposte dentro i blocchetti */
+.info-item .a {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(1.8rem, 5.5vw, 2.2rem) !important; /* Dimensione calibrata come gli altri testi descrittivi */
+  line-height: 1.3 !important; /* Diamo il giusto respiro alle righe in corsivo */
+  color: var(--ink-soft) !important;
+  font-weight: 400 !important;
+}
+
+/* Gestisce la scritta iniziale "Dress code —" per mantenerla integrata nel flusso */
+.info-item .a strong {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400 !important;
+  color: var(--ink) !important; /* Un pizzico più scura ed evidente */
+}
+/* ─── REGOLAZIONE MICRO-INGRANDIMENTO DATA FOOTER ─── */
+
+/* Alza leggermente la data in fondo alla pagina principale */
+footer .foot-date {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2rem, 5.5vw, 2.5rem) !important; /* Un filo più grande e visibile */
+  letter-spacing: 0.02em !important;
+  margin-top: 5px !important;
+}
+
+/* Alza leggermente la data/firma in fondo alla lista nozze */
+.gift-body .card .page-foot {
+  font-size: clamp(2rem, 6vw, 2.6rem) !important; /* Coordinata e proporzionata */
+  margin-top: 35px !important;
+}
+/* ─── CORRISPONDENZA TOTALE FOOTER COME HERO INITIAL ─── */
+
+/* ─── GEMELLAGGIO TOTALE DEI FOOTER (INDEX & LISTA NOZZE) ─── */
+
+/* Applica lo stesso stile ai nomi in fondo a entrambe le pagine */
+footer .foot-names, 
+.gift-body .card .foot-names {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2.5rem, 8vw, 3.8rem) !important;
+  font-weight: 400 !important;
+  color: #849d79 !important; /* Verde Salvia CHIARO dell'Hero */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  text-transform: none !important;
+  margin-bottom: 5px !important;
+  letter-spacing: 0.02em !important;
+  display: block !important;
+}
+
+/* Applica lo stesso stile alla data in fondo a entrambe le pagine */
+footer .foot-date, 
+.gift-body .card .foot-date {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2rem, 5.5vw, 2.5rem) !important;
+  color: #849d79 !important; /* Verde Salvia CHIARO dell'Hero */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Un piccolo reset per dare spazio alla nuova struttura nella card della lista nozze */
+.gift-body .card .foot-names {
+  margin-top: 35px !important;
+} 
+/* ─── COLOR & OPACITY LOOK 100% UNIFICATO: VERDE SALVIA CHIARO ASSOLUTO ─── */
+
+/* 1. Forza colore, ombra e OPACITÀ MASSIMA su ogni singolo testo esistente */
+html, body, div, p, span, h1, h2, h3, h4, a, button, section, label, input, textarea, strong, em, i, b, u {
+  color: #849d79 !important; /* Colore unico */
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important; /* Stessa ombra */
+  opacity: 1 !important; /* Elimina l'effetto sbiadito/chiaro su tutti i testi */
+  -webkit-text-fill-color: #849d79 !important; /* Forza il colore pieno anche su sistemi Apple */
+}
+
+/* 2. Rendi dello stesso colore e intensità anche i link cliccabili (come la lista nozze) */
+a, a:visited, a:hover, a:active {
+  color: #849d79 !important;
+  opacity: 1 !important;
+}
+
+/* 3. Calibrazione segnaposto (placeholder) per far capire che sono esempi senza sbiadirli col vecchio metodo */
+input::placeholder, textarea::placeholder {
+  color: #849d79 !important;
+  opacity: 0.5 !important; /* Questo è l'unico che teniamo un pelo più trasparente per i moduli */
+  text-shadow: none !important;
+  -webkit-text-fill-color: #849d79 !important;
+}
+
+/* 4. PROTEZIONE BOTTONI: Il testo dentro RSVP, PayPal e Invia deve rimanere bianco puro */
+.paypal-btn, .paypal-btn *, .allergy-submit, .rsvp-btn, .allergy-submit * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* 5. Uniformiamo anche le linee e i dettagli grafici */
+.hero-divider span, .div-line span {
+  background: linear-gradient(to right, transparent, #849d79, transparent) !important;
+  opacity: 1 !important;
+}
+.hero-divider i, .div-line i {
+  color: #849d79 !important;
+  opacity: 1 !important;
+}

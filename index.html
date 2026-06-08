@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elvira & Fabrizio — 18 Settembre 2026</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+      <p class="hero-pre">Vi invitiamo al nostro matrimonio</p>
+      <h1 class="hero-names">Fabrizio<span class="amp">&</span>Elvira</h1>
+      <div class="hero-divider"><span></span><i>✦</i><span></span></div>
+      <p class="hero-sub">18 · 09 · 2026 — Napoli</p>
+    </div>
+    <div class="scroll-nudge"><div class="line"></div></div>
+  </header>
+
+<section class="section">
+    <span class="section-tag">Il giorno</span>
+    <!-- AGGIUNGI LA CLASSE QUI SOTTO -->
+    <h2 class="wedding-day">Wedding<br><em>Day</em></h2>
+    <p>Ci sposiamo. <strong>Finalmente.</strong> Vi aspettiamo per condividere il momento più bello della nostra vita.</p>
+    <div class="date-card">
+      <div class="dc-label">Cerimonia</div>
+      <div class="dc-day">18</div>
+      <div class="dc-month">Settembre · 2026</div>
+      <div class="dc-thin"></div>
+      <div class="dc-time">Venerdì · Ore 16:00</div>
+      <div class="dc-place">
+        Chiesa di Sant'Antonio a Posillipo<br>
+        Via Minucio Felice, 13 — Napoli
+      </div>
+    </div>
+  </section>
+
+<section class="section">
+    <span class="section-tag">Tutto quello che ti serve sapere</span>
+    <h2 class="info-title">Info <span>Utili</span></h2>
+
+<div class="info-list">
+      <div class="info-item">
+        <div class="q">Come ci si veste?</div>
+        <div class="a">
+          <strong>Dress code —</strong> Libero <span class="exclamation-space">!</span> Non abbiamo nessuna preferenza particolare, l'unica cosa che conta davvero per noi è la tua presenza. Scegli l'abito con cui ti senti più a tuo agio per festeggiare insieme 🤍
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="q">Allergie e intolleranze</div>
+        <div class="a">
+          Vi preghiamo di segnalare eventuali intolleranze o allergie alimentari compilando l'apposito modulo presente qui sotto, per aiutarci ad organizzarci al meglio.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-tag">Aiutaci a prenderci cura di te</span>
+    <h2 class="allergy-title">Allergie & <br><span>Intolleranze</span></h2>
+    <p>Se hai allergie, intolleranze o preferenze alimentari faccelo sapere: vogliamo che tutti possano festeggiare senza pensieri.</p>
+
+<div class="allergy-form">
+      <!-- NUOVO TITOLO PER IL NOME E PLACEHOLDER AGGIORNATO -->
+      <label for="guest-name">Inserisci il tuo nome e cognome</label>
+      <div class="allergy-name-row">
+        <input type="text" id="guest-name" placeholder="Es. Marco Rossi" autocomplete="off" />
+      </div>
+      
+      <label for="allergy-text">Allergie o intolleranze</label>
+      <textarea id="allergy-text" placeholder="Es. allergia alle noci, intolleranza al lattosio, vegetariano…"></textarea>
+      <button class="allergy-submit" id="allergyBtn" onclick="sendAllergy()">Invia segnalazione</button>
+      <p class="allergy-note" id="allergyNote"></p>
+    </div>
+  </section>
+
+ <section class="section">
+    <span class="section-tag">Con tutto il nostro amore</span>
+    <!-- MODIFICA QUESTA RIGA QUI SOTTO -->
+    <h2 class="thanks-title">Grazie 🤍</h2>
+    <div class="thank-block">
+      <p>Avervi accanto è il regalo più grande che potessimo desiderare. La vostra presenza vale più di qualsiasi cosa.</p>
+    </div>
+    <p class="gift-link">
+      Se ti va di contribuire al nostro viaggio di nozze, <a href="lista-nozze.html">clicca qui</a>
+    </p>
+  </section>
+
+<footer>
+    <!-- INVERTIAMO I NOMI: PRIMA FABRIZIO -->
+    <div class="foot-names">Fabrizio &amp; Elvira</div>
+    <div class="foot-date">18 · 09 · 2026</div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.section').forEach(s => obs.observe(s));
+
+    function sendAllergy() {
+      const name = document.getElementById('guest-name').value.trim();
+      const text = document.getElementById('allergy-text').value.trim();
+      const btn  = document.getElementById('allergyBtn');
+      const note = document.getElementById('allergyNote');
+
+      if (!name || !text) {
+        note.style.color = '#c0796a';
+        note.textContent = 'Compila entrambi i campi prima di inviare.';
+        return;
+      }
+
+      const subject = encodeURIComponent('Allergie/Intolleranze — ' + name);
+      const body    = encodeURIComponent('Nome: ' + name + '\n\nAllergie/Intolleranze:\n' + text);
+      window.location.href = 'mailto:sposi@esempio.it?subject=' + subject + '&body=' + body;
+
+      btn.textContent = 'Inviato ✓';
+      btn.classList.add('sent');
+      note.style.color = 'var(--sage)';
+      note.textContent = 'Grazie! Ti confermiamo di aver ricevuto la tua segnalazione.';
+    }
+  </script>
+</body>
+</html>
