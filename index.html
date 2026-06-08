@@ -38,6 +38,19 @@
         Chiesa di Sant'Antonio a Posillipo<br>
         Via Minucio Felice, 13 — Napoli
       </div>
+      <!-- NUOVO BLOCCO RICEVIMENTO IDENTICO A QUELLO DELLA CERIMONIA -->
+    <div class="date-card" style="margin-top: 24px;">
+      <div class="dc-label">Il Ricevimento</div>
+      <div class="dc-day">18</div>
+      <div class="dc-month">Settembre · 2026</div>
+      <div class="dc-thin"></div>
+      <div class="dc-time">Dopo la cerimonia</div>
+      <div class="dc-place">
+        Siamo felici di festeggiare insieme a voi a:<br>
+        <strong>Villa Doria d'Angri</strong><br>
+        Via Francesco Petrarca, 80 — Napoli
+      </div>
+    </div>
     </div>
   </section>
 
@@ -66,15 +79,25 @@
     <p>Se hai allergie, intolleranze o preferenze alimentari faccelo sapere: vogliamo che tutti possano festeggiare senza pensieri.</p>
 
 <div class="allergy-form">
-      <!-- NUOVO TITOLO PER IL NOME E PLACEHOLDER AGGIORNATO -->
       <label for="guest-name">Inserisci il tuo nome e cognome</label>
       <div class="allergy-name-row">
         <input type="text" id="guest-name" placeholder="Es. Marco Rossi" autocomplete="off" />
       </div>
+
+      <label for="guest-attendance">Sarai dei nostri?</label>
+      <div class="allergy-name-row">
+        <select id="guest-attendance" onchange="toggleAllergyField()" style="width: 100%; padding: 14px 16px; border: 1px solid var(--border); background: rgba(255,252,248,0.95); font-family: 'Great Vibes', cursive !important; font-size: clamp(1.6rem, 4.5vw, 2rem) !important; color: #849d79 !important; outline: none; border-radius: var(--radius); -webkit-appearance: none;">
+          <option value="Sì" selected>Sì, verrò a festeggiare con voi!</option>
+          <option value="No">No, purtroppo non riuscirò a venire</option>
+        </select>
+      </div>
       
-      <label for="allergy-text">Allergie o intolleranze</label>
-      <textarea id="allergy-text" placeholder="Es. allergia alle noci, intolleranza al lattosio, vegetariano…"></textarea>
-      <button class="allergy-submit" id="allergyBtn" onclick="sendAllergy()">Invia segnalazione</button>
+      <div id="allergy-wrapper">
+        <label for="allergy-text">Specifiche alimentari (Allergie/Intolleranze)</label>
+        <textarea id="allergy-text" placeholder="Es. nessuna, oppure allergia alle noci, intolleranza al lattosio, celiaco, vegetariano…"></textarea>
+      </div>
+
+      <button class="allergy-submit" id="allergyBtn" onclick="sendRSVP()">Invia conferma</button>
       <p class="allergy-note" id="allergyNote"></p>
     </div>
   </section>
@@ -97,34 +120,48 @@
     <div class="foot-date">18 · 09 · 2026</div>
   </footer>
 
-  <script>
+<script>
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.section').forEach(s => obs.observe(s));
 
-    function sendAllergy() {
+    function toggleAllergyField() {
+      const attendance = document.getElementById('guest-attendance').value;
+      const wrapper = document.getElementById('allergy-wrapper');
+      if (attendance === 'No') {
+        wrapper.style.display = 'none';
+      } else {
+        wrapper.style.display = 'block';
+      }
+    }
+
+    function sendRSVP() {
       const name = document.getElementById('guest-name').value.trim();
+      const attendance = document.getElementById('guest-attendance').value;
       const text = document.getElementById('allergy-text').value.trim();
       const btn  = document.getElementById('allergyBtn');
       const note = document.getElementById('allergyNote');
 
-      if (!name || !text) {
+      if (!name) {
         note.style.color = '#c0796a';
-        note.textContent = 'Compila entrambi i campi prima di inviare.';
+        note.textContent = 'Inserisci il tuo nome per confermare.';
         return;
       }
 
-      const subject = encodeURIComponent('Allergie/Intolleranze — ' + name);
-      const body    = encodeURIComponent('Nome: ' + name + '\n\nAllergie/Intolleranze:\n' + text);
-      window.location.href = 'mailto:sposi@esempio.it?subject=' + subject + '&body=' + body;
+      let mailBody = `Nome partecipante: ${name}\nPresenza: ${attendance}`;
+      if (attendance === 'Sì') {
+        mailBody += `\nNote alimentari / Allergie: ${text || 'Nessuna segnalazione'}`;
+      }
+
+      const subject = encodeURIComponent(`R.S.V.P. Matrimonio — ${name}`);
+      const body = encodeURIComponent(mailBody);
+      
+      window.location.href = `mailto:alessandro22378@gmail.com?subject=${subject}&body=${body}`;
 
       btn.textContent = 'Inviato ✓';
       btn.classList.add('sent');
-      note.style.color = 'var(--sage)';
-      note.textContent = 'Grazie! Ti confermiamo di aver ricevuto la tua segnalazione.';
+      note.textContent = 'Grazie! La tua preferenza è stata registrata.';
     }
   </script>
 </body>

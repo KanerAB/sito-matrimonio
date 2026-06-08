@@ -1231,3 +1231,13 @@ input::placeholder, textarea::placeholder {
   background: #0b5b2f !important; /* Verde leggermente più scuro quando ci passi sopra con il mouse */
   box-shadow: 0 6px 24px rgba(16, 124, 65, 0.35) !important;
 }
+/* ALLINEAMENTO GRAFICO DEL SELETTORE RSVP */
+.allergy-form select {
+  cursor: pointer;
+  box-shadow: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.allergy-form select:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px var(--gold-pale) !important;
+}
