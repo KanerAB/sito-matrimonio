@@ -1201,3 +1201,33 @@ input::placeholder, textarea::placeholder {
   color: #849d79 !important;
   opacity: 1 !important;
 }
+/* FIX BACKGROUND MOBILE: SCORRIMENTO INFINITO E NITIDO */
+@media (max-width: 768px) {
+  body {
+    background-image: 
+      linear-gradient(rgba(250,248,244,0.55), rgba(250,248,244,0.88)),
+      url('Sfondo.png') !important;
+    
+    /* 1. Forza l'immagine a scorrere normalmente con la pagina */
+    background-attachment: scroll !important;
+    
+    /* 2. Imposta la larghezza dell'immagine pari al 100% dello schermo del telefono, 
+          ma lascia che l'altezza si calcoli da sola in automatico per non sgranarla */
+    background-size: 100% auto !important; 
+    
+    /* 3. Permette all'immagine di ripetersi verso il basso man mano che scrolli */
+    background-repeat: repeat-y !important;
+    background-position: center top !important;
+  }
+}
+/* ─── CAMBIO COLORE BOTTONE PAYPAL: VERDE SICURO ─── */
+
+.paypal-btn {
+  background: #107c41 !important; /* Verde istituzionale, solido e sicuro */
+  box-shadow: 0 2px 12px rgba(16, 124, 65, 0.2) !important;
+}
+
+.paypal-btn:hover {
+  background: #0b5b2f !important; /* Verde leggermente più scuro quando ci passi sopra con il mouse */
+  box-shadow: 0 6px 24px rgba(16, 124, 65, 0.35) !important;
+}
