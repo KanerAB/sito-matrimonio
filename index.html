@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elvira & Fabrizio — 18 Settembre 2026</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
@@ -23,11 +22,11 @@
     <div class="scroll-nudge"><div class="line"></div></div>
   </header>
 
-<section class="section">
+  <section class="section">
     <span class="section-tag">Il giorno</span>
-    <!-- AGGIUNGI LA CLASSE QUI SOTTO -->
     <h2 class="wedding-day">Wedding<br><em>Day</em></h2>
     <p>Ci sposiamo. <strong>Finalmente.</strong> Vi aspettiamo per condividere il momento più bello della nostra vita.</p>
+    
     <div class="date-card">
       <div class="dc-label">Cerimonia</div>
       <div class="dc-day">18</div>
@@ -38,7 +37,8 @@
         Chiesa di Sant'Antonio a Posillipo<br>
         Via Minucio Felice, 13 — Napoli
       </div>
-      <!-- NUOVO BLOCCO RICEVIMENTO IDENTICO A QUELLO DELLA CERIMONIA -->
+    </div>
+
     <div class="date-card" style="margin-top: 24px;">
       <div class="dc-label">Il Ricevimento</div>
       <div class="dc-day">18</div>
@@ -51,34 +51,35 @@
         Via Francesco Petrarca, 80 — Napoli
       </div>
     </div>
-    </div>
   </section>
 
-<section class="section">
+  <section class="section">
     <span class="section-tag">Tutto quello che ti serve sapere</span>
     <h2 class="info-title">Info <span>Utili</span></h2>
 
-<div class="info-item">
-        <div class="q">Formula Bambini</div>
-        <div class="a">
-          Elvira (mi darà lei cosa scrivere)
-        </div>
+    <div class="info-item">
+      <div class="q">I più piccoli</div>
+      <div class="a">
+        Adoriamo i vostri bimbi, ma per il nostro giorno speciale desideriamo un'atmosfera raccolta e a misura di adulto.
       </div>
-      <div class="info-item">
-        <div class="q">Allergie e intolleranze</div>
-        <div class="a">
-          Vi preghiamo di segnalare eventuali intolleranze o allergie alimentari compilando l'apposito modulo presente qui sotto, per aiutarci ad organizzarci al meglio.
-        </div>
+    </div>
+    <div class="info-item">
+      <div class="q">Allergie e intolleranze</div>
+      <div class="a">
+        Vi preghiamo di segnalare eventuali intolleranze o allergie alimentari compilando l'apposito modulo presente qui sotto, per aiutarci ad organizzarci al meglio.
       </div>
     </div>
   </section>
 
   <section class="section">
     <span class="section-tag">Aiutaci a prenderci cura di te</span>
-    <h2 class="allergy-title">Allergie & <br><span>Intolleranze</span></h2>
-    <p>Se hai allergie, intolleranze o preferenze alimentari faccelo sapere: vogliamo che tutti possano festeggiare senza pensieri.</p>
+    <h2 class="allergy-title">Conferma la tua <br><span>presenza</span></h2>
+    <p class="intro">
+      Siamo felici di poter festeggiare questo giorno speciale insieme a voi.<br>
+      Vi preghiamo di confermare la vostra presenza compilando il modulo presente qui in basso con nome e cognome.
+    </p>
 
-<div class="allergy-form">
+    <div class="allergy-form">
       <label for="guest-name">Inserisci il tuo nome e cognome</label>
       <div class="allergy-name-row">
         <input type="text" id="guest-name" placeholder="Es. Marco Rossi" autocomplete="off" />
@@ -102,9 +103,8 @@
     </div>
   </section>
 
- <section class="section">
+  <section class="section">
     <span class="section-tag">Con tutto il nostro amore</span>
-    <!-- MODIFICA QUESTA RIGA QUI SOTTO -->
     <h2 class="thanks-title">Grazie</h2>
     <div class="thank-block">
       <p>Avervi accanto è il regalo più grande che potessimo desiderare. La vostra presenza vale più di qualsiasi cosa.</p>
@@ -114,13 +114,12 @@
     </p>
   </section>
 
-<footer>
-    <!-- INVERTIAMO I NOMI: PRIMA FABRIZIO -->
+  <footer>
     <div class="foot-names">Fabrizio ed Elvira</div>
     <div class="foot-date">18 · 09 · 2026</div>
   </footer>
 
-<script>
+  <script>
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.1 });
@@ -149,19 +148,35 @@
         return;
       }
 
-      let mailBody = `Nome partecipante: ${name}\nPresenza: ${attendance}`;
-      if (attendance === 'Sì') {
-        mailBody += `\nNote alimentari / Allergie: ${text || 'Nessuna segnalazione'}`;
-      }
+      btn.textContent = 'Invio in corso...';
+      btn.style.pointerEvents = 'none';
 
-      const subject = encodeURIComponent(`R.S.V.P. Matrimonio — ${name}`);
-      const body = encodeURIComponent(mailBody);
-      
-      window.location.href = `mailto:alessandro22378@gmail.com?subject=${subject}&body=${body}`;
+      const formData = {
+        Nome: name,
+        Presenza: attendance,
+        Allergie_Note: attendance === 'Sì' ? (text || 'Nessuna segnalazione') : 'Non partecipa'
+      };
 
-      btn.textContent = 'Inviato ✓';
-      btn.classList.add('sent');
-      note.textContent = 'Grazie! La tua preferenza è stata registrata.';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxQzLg8ZEySZfJsI_JJVjef78O4uigCBVvDOioMIe6BFgWv-6TWmudzwnkbUS0x1N6r8Q/exec';
+
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        btn.textContent = 'Inviato ✓';
+        btn.classList.add('sent');
+        note.style.color = '#849d79';
+        note.textContent = 'Grazie! La tua presenza è stata registrata direttamente.';
+      })
+      .catch(() => {
+        btn.textContent = 'Invia conferma';
+        btn.style.pointerEvents = 'auto';
+        note.style.color = '#c0796a';
+        note.textContent = 'Si è verificato un errore. Riprova tra un momento.';
+      });
     }
   </script>
 </body>

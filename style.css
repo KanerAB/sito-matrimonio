@@ -4,12 +4,10 @@
   --cream:      #FAF8F4;
   --parchment:  #F2EDE3;
   --warm-white: #FFFCF8;
-
   --sage:       #2D3B26; 
   --ink:        #607456; 
   --ink-mid:    #607456; 
   --ink-soft:   #7A8F70;
-  
   --gold:       #B8965A;
   --gold-light: #D4B07A;
   --gold-pale:  rgba(184,150,90,0.12);
@@ -23,7 +21,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* ─── BODY ─── */
 body {
   font-family: 'Jost', sans-serif;
   background-color: var(--cream);
@@ -39,7 +36,6 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* ─── NOISE TEXTURE OVERLAY ─── */
 body::before {
   content: '';
   position: fixed;
@@ -50,7 +46,6 @@ body::before {
   opacity: 0.4;
 }
 
-/* ─── HERO ─── */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -64,7 +59,6 @@ body::before {
   overflow: hidden;
 }
 
-/* Decorative corner lines */
 .hero::before,
 .hero::after {
   content: '';
@@ -175,12 +169,12 @@ body::before {
   background: linear-gradient(to bottom, var(--gold), transparent);
   animation: drop-line 2.2s ease-in-out infinite;
 }
+
 @keyframes drop-line {
   0%,100% { transform: scaleY(0.2); opacity: 0.3; transform-origin: top; }
   50%      { transform: scaleY(1);   opacity: 0.9; transform-origin: top; }
 }
 
-/* ─── SECTIONS ─── */
 .section {
   position: relative;
   z-index: 1;
@@ -205,7 +199,7 @@ body::before {
   font-weight: 400;
   letter-spacing: 0.05em;
   text-transform: none !important;
-  color: #8fa699 !important; /* Scurito al punto giusto per dare contrasto e ottima leggibilità */
+  color: #8fa699 !important;
   margin-bottom: 10px;
 }
 
@@ -226,15 +220,14 @@ body::before {
 
 .section > p {
   font-family: 'Italianno', cursive !important;
-  font-weight: 400 !important; /* Riportato a un peso più leggero e sinuoso */
+  font-weight: 400 !important;
   font-size: clamp(2rem, 6.5vw, 2.7rem) !important;
   line-height: 1.4;
-  color: #8fa699 !important; /* Sostituito con un verde salvia più chiaro e delicato */
-  text-shadow: 1px 1px 1px rgba(255, 252, 248, 0.8); /* Ombra finissima per dare un pelo di stacco */
+  color: #8fa699 !important;
+  text-shadow: 1px 1px 1px rgba(255, 252, 248, 0.8);
   margin-bottom: 20px;
 }
 
-/* ─── DATE CARD ─── */
 .date-card {
   margin: 40px auto 0;
   padding: 36px 28px;
@@ -306,7 +299,6 @@ body::before {
   line-height: 1.85;
 }
 
-/* ─── INFO LIST ─── */
 .info-list {
   margin-top: 38px;
   width: 100%;
@@ -345,27 +337,26 @@ body::before {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.15rem, 4.5vw, 1.35rem);
   font-weight: 500;
-  color: var(--ink); /* Mantiene il colore principale */
+  color: var(--ink);
   margin-bottom: 12px;
   line-height: 1.3;
   letter-spacing: 0.01em;
 }
 
 .info-item .a {
-  font-family: 'Jost', sans-serif; /* Cambiato in un font moderno e super leggibile */
-  font-size: clamp(0.88rem, 3vw, 0.98rem); /* Dimensione calibrata per i testi informativi */
-  font-weight: 300; /* Leggero ed elegante */
-  line-height: 1.8; /* Più respiro tra le righe */
-  color: var(--ink-soft); /* Un tono di salvia leggermente più morbido per non appesantire */
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.88rem, 3vw, 0.98rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink-soft);
 }
 
 .info-item .a strong {
   font-weight: 500;
-  color: var(--ink); /* Il "Dress code —" iniziale rimane bello evidente */
+  color: var(--ink);
   letter-spacing: 0.02em;
 }
 
-/* ─── ALLERGY FORM ─── */
 .allergy-form {
   margin-top: 38px;
   width: 100%;
@@ -381,8 +372,9 @@ body::before {
   color: var(--sage);
   margin-bottom: 10px;
   margin-top: 20px;
+  display: block !important;
 }
-.allergy-form label:first-of-type { margin-top: 0; }
+.allergy-form label:first-of-type { margin-top: 0 !important; }
 
 .allergy-name-row {
   display: flex;
@@ -479,7 +471,6 @@ body::before {
   min-height: 20px;
 }
 
-/* ─── THANK YOU / GIFT ─── */
 .thank-block {
   margin: 28px 0;
   padding: 32px 28px;
@@ -524,7 +515,6 @@ body::before {
   border-color: var(--ink);
 }
 
-/* ─── FOOTER ─── */
 footer {
   position: relative;
   z-index: 1;
@@ -533,12 +523,12 @@ footer {
   border-top: 1px solid var(--border-soft);
 }
 .foot-names {
-  font-family: 'Great Vibes', cursive !important; /* Lo stesso font dell'inizio della pagina */
-  font-size: clamp(2.5rem, 8vw, 3.8rem) !important; /* Dimensione elegante per la firma finale */
+  font-family: 'Great Vibes', cursive !important;
+  font-size: clamp(2.5rem, 8vw, 3.8rem) !important;
   font-weight: 400;
-  color: #849d79 !important; /* Lo stesso Verde Salvia CHIARO dei nomi nell'Hero */
-  text-shadow: 1px 1px 3px rgba(45, 59, 38, 0.3) !important; /* Ombra di contrasto delicata */
-  text-transform: none !important; /* Rimuove l'eventuale maiuscolo forzato */
+  color: #849d79 !important;
+  text-shadow: 1px 1px 3px rgba(45, 59, 38, 0.3) !important;
+  text-transform: none !important;
   margin-bottom: 5px;
   letter-spacing: 0.02em;
 }
@@ -551,7 +541,6 @@ footer {
   color: var(--gold);
 }
 
-/* ─── GIFT PAGE (lista-nozze.html) ─── */
 .gift-body {
   min-height: 100svh;
   min-height: 100vh;
@@ -652,7 +641,6 @@ footer {
 .div-line span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
 .div-line i { font-style: normal; color: var(--gold); font-size: 0.7rem; }
 
-/* ─── PAYPAL BLOCK ─── */
 .paypal-block {
   padding: 30px 24px;
   border: 1px solid var(--border);
@@ -708,9 +696,7 @@ footer {
 }
 .paypal-btn:active { transform: translateY(0); }
 
-.paypal-btn-text {
-  font-size: 0.78rem;
-}
+.paypal-btn-text { font-size: 0.78rem; }
 
 .paypal-disclaimer {
   margin-top: 16px;
@@ -730,7 +716,6 @@ footer {
   color: var(--ink-soft);
 }
 
-/* ─── SPECIFIC WEDDING DAY STYLE ─── */
 .wedding-day {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400;
@@ -744,7 +729,6 @@ footer {
   margin-bottom: 10px;
 }
 
-/* ─── KEYFRAMES ─── */
 @keyframes rise {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -754,152 +738,138 @@ footer {
   to   { opacity: 0.3; }
 }
 
-/* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 2px; }
 
-/* ─── SELECTION ─── */
 ::selection {
   background: var(--gold-pale);
   color: var(--ink);
 }
-/* ─── SPECIFIC WEDDING DAY STYLE ─── */
+
 .wedding-day {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400;
   font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
   line-height: 1.1;
-  color: #849d79 !important; /* "Wedding" diventa Verde Salvia CHIARO */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   letter-spacing: 0.02em;
   text-transform: none !important;
 }
 
-/* Questo gestisce la parola "Day" che nell'HTML è racchiusa dentro <em> */
 .wedding-day em {
   font-family: 'Great Vibes', cursive !important;
   font-style: normal !important;
-  color: #8fa699 !important; /* "Day" diventa Verde Salvia più SCURO */
+  color: #8fa699 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
 }
+
 .info-title {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400;
   font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
   line-height: 1.2;
-  color: #849d79 !important; /* "Info" in Verde Salvia CHIARO */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   text-transform: none !important;
   letter-spacing: 0.02em;
-  white-space: nowrap; /* Forza la scritta a stare tutta attaccata sulla stessa riga */
+  white-space: nowrap;
 }
 
-/* Gestisce la parola "Utili" (dentro lo span) */
 .info-title span {
   font-family: 'Great Vibes', cursive !important;
-  color: #8fa699 !important; /* "Utili" in Verde Salvia più SCURO (come Day) */
+  color: #8fa699 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
-  margin-left: 12px; /* Dà il giusto spazio tra Info e Utili */
+  margin-left: 12px;
 }
-/* ─── SPECIFIC ALLERGY TITLE STYLE ─── */
+
 .allergy-title {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400;
   font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
   line-height: 1.1;
-  color: #849d79 !important; /* "Allergie &" diventa Verde Salvia CHIARO */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   text-transform: none !important;
   letter-spacing: 0.02em;
 }
 
-/* Gestisce la parola "Intolleranze" (dentro lo span) */
 .allergy-title span {
   font-family: 'Great Vibes', cursive !important;
-  color: #8fa699 !important; /* "Intolleranze" diventa Verde Salvia più SCURO */
+  color: #8fa699 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
 }
-/* ─── SPECIFIC THANKS TITLE STYLE ─── */
+
 .thanks-title {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400;
   font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
   line-height: 1.1;
-  color: #849d79 !important; /* "Grazie" in Verde Salvia CHIARO come Fabrizio ed Elvira */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   text-transform: none !important;
   letter-spacing: 0.02em;
   margin-bottom: 22px;
 }
-/* ─── RESET E FIX DEFINITIVO LISTA NOZZE ─── */
 
-/* 1. Scritta "Lista nozze" in alto */
 .gift-body .card .eyebrow {
   font-family: 'Italianno', cursive !important;
   font-size: clamp(2rem, 6vw, 2.5rem) !important;
   font-weight: 400 !important;
   letter-spacing: 0.05em !important;
   text-transform: none !important;
-  color: #8fa699 !important; /* Verde Salvia MEDIO */
+  color: #8fa699 !important;
   margin-bottom: 5px !important;
 }
 
-/* 2. Titolo principale "Un piccolo" */
 .gift-body .card h1 {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400 !important;
   font-size: clamp(3.5rem, 12vw, 5.5rem) !important;
   line-height: 1.1 !important;
-  color: #849d79 !important; /* Verde Salvia CHIARO */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   text-transform: none !important;
   letter-spacing: 0.02em !important;
 }
 
-/* 3. Parola "dono" (dentro il tag em dell'h1) */
 .gift-body .card h1 em {
   font-family: 'Great Vibes', cursive !important;
   font-style: normal !important;
-  color: #8fa699 !important; /* Verde Salvia più SCURO */
+  color: #8fa699 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
 }
 
-/* 4. Frase di introduzione sotto il titolo */
 .gift-body .card .intro {
   font-family: 'Italianno', cursive !important;
   font-weight: 400 !important;
   font-size: clamp(2rem, 6.5vw, 2.7rem) !important;
   line-height: 1.4 !important;
-  color: #7a8f70 !important; /* Verde Salvia MEDIO */
+  color: #7a8f70 !important;
   text-shadow: 1px 1px 2px rgba(255, 252, 248, 0.9) !important;
 }
 
-/* 5. Nomi sopra il blocco PayPal */
 .gift-body .card .paypal-block .paypal-names {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(2.2rem, 6vw, 3.2rem) !important;
   font-weight: 400 !important;
-  color: #849d79 !important; /* Verde Salvia CHIARO */
+  color: #849d79 !important;
   text-shadow: 1px 1px 3px rgba(45, 59, 38, 0.2) !important;
   text-transform: none !important;
 }
-/* ─── RESET GLOBALE CON SIZE CALIBRATI: LOOK 100% CORSIVO ─── */
 
-/* Forza il font e rimuove il maiuscolo su tutto il sito */
 html, body, div, p, span, h1, h2, h3, a, button, section, label, input, textarea {
   font-family: 'Great Vibes', cursive !important;
   text-transform: none !important;
 }
 
-/* 1. I TITOLI PRINCIPALI (Wedding Day, Allergie & Intolleranze, Un piccolo Dono, Grazie) */
 h1, h2, .gift-title {
   font-size: clamp(3.5rem, 11vw, 5rem) !important;
   line-height: 1.1 !important;
   font-weight: 400 !important;
 }
 
-/* 2. LE MICRO-SCRITTE SOPRA I TITOLI (Il Giorno, Tutto quello che ti serve, Lista Nozze) */
 .section-tag, .gift-tag, .eyebrow {
   font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
   font-weight: 400 !important;
@@ -907,14 +877,12 @@ h1, h2, .gift-title {
   margin-bottom: 4px !important;
 }
 
-/* 3. LE FRASI DESCRITTIVE (Ci sposiamo finalmente, Se hai allergie, La vostra presenza...) */
 .section > p, .gift-body .card .intro {
   font-size: clamp(1.8rem, 5.5vw, 2.3rem) !important;
   line-height: 1.3 !important;
   font-weight: 400 !important;
 }
 
-/* 4. LE DOMANDE DELLE INFO UTILI (Come ci si veste?, Allergie e intolleranze) */
 .info-item .q {
   font-size: clamp(2rem, 6vw, 2.5rem) !important;
   font-weight: 400 !important;
@@ -922,49 +890,41 @@ h1, h2, .gift-title {
   margin-bottom: 6px !important;
 }
 
-/* 5. LE RISPOSTE DELLE INFO UTILI (I testi dentro i blocchetti) */
 .info-item .a {
   font-size: clamp(1.5rem, 4.5vw, 1.8rem) !important;
   line-height: 1.4 !important;
   font-weight: 400 !important;
 }
 
-/* 6. I TESTI DEL BLOCCO PAYPAL (Diciture sopra e sotto il bottone) */
-.paypal-names {
-  font-size: clamp(2.2rem, 6.5vw, 3rem) !important;
-}
+.paypal-names { font-size: clamp(2.2rem, 6.5vw, 3rem) !important; }
+
 .paypal-caption, .paypal-disclaimer {
   font-size: clamp(1.4rem, 4vw, 1.7rem) !important;
   line-height: 1.3 !important;
 }
 
-/* 7. I BOTTONI E LINK DI NAVIGAZIONE (PayPal, RSVP, Torna all'invito) */
 .paypal-btn .paypal-btn-text, .rsvp-btn, button, .back-link {
   font-size: clamp(1.4rem, 4vw, 1.8rem) !important;
   font-weight: 400 !important;
   letter-spacing: 0.02em !important;
 }
 
-/* 8. FIX SPECIFICO PER IL FOOTER DELLA LISTA NOZZE */
 .gift-body .card .page-foot {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(1.8rem, 5.5vw, 2.4rem) !important;
-  text-transform: none !important; /* Rimuove il maiuscolo che distrugge il corsivo */
-  letter-spacing: 0.02em !important; /* Spaziatura naturale per far unire le lettere */
-  color: #8fa699 !important; /* Verde Salvia MEDIO, super elegante */
+  text-transform: none !important;
+  letter-spacing: 0.02em !important;
+  color: #8fa699 !important;
   margin-top: 35px !important;
   line-height: 1.2 !important;
   opacity: 1 !important;
 }
-/* Corregge l'inclinazione del punto esclamativo in Great Vibes creando lo spazio visivo */
+
 .exclamation-space {
-  margin-right: 14px !important; /* Spinge via la parola successiva */
+  margin-right: 14px !important;
   display: inline-block;
 }
 
-/* ─── FIX MICRO-REGOLAZIONE: DATA E CHIESA SNELLI ─── */
-
-/* 1. Scritta "Cerimonia" (poco più grande del testo normale) */
 .date-card .dc-label {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(1.6rem, 4.5vw, 1.9rem) !important;
@@ -974,7 +934,6 @@ h1, h2, .gift-title {
   margin-bottom: 2px !important;
 }
 
-/* 2. Il numero "18" (ridimensionato per non essere gigante) */
 .date-card .dc-day {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(3.2rem, 10vw, 3.8rem) !important;
@@ -982,7 +941,6 @@ h1, h2, .gift-title {
   color: #849d79 !important;
 }
 
-/* 3. Il mese "Settembre · 2026" (molto equilibrato) */
 .date-card .dc-month {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(1.8rem, 5vw, 2.2rem) !important;
@@ -992,7 +950,6 @@ h1, h2, .gift-title {
   margin: 2px 0 10px !important;
 }
 
-/* 4. L'orario "Venerdì · Ore 16:00" */
 .date-card .dc-time {
   font-family: 'Great Vibes', cursive !important;
   font-style: normal !important;
@@ -1000,7 +957,6 @@ h1, h2, .gift-title {
   color: var(--ink) !important;
 }
 
-/* 5. Nome e indirizzo della Chiesa (giusto un filo sopra il testo dei blocchetti) */
 .date-card .dc-place {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(1.4rem, 4vw, 1.6rem) !important;
@@ -1008,9 +964,7 @@ h1, h2, .gift-title {
   color: var(--ink-soft) !important;
   margin-top: 8px !important;
 }
-/* ─── FIX SOTTOBLOCCO GRAZIE ─── */
 
-/* Forza il font e regola la dimensione per la frase dentro il riquadro */
 .thank-block p {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400 !important;
@@ -1019,42 +973,35 @@ h1, h2, .gift-title {
   color: var(--ink-mid) !important;
 }
 
-/* Forza il font e regola la dimensione per la frase con il link alla lista nozze */
 .gift-link {
   font-family: 'Great Vibes', cursive !important;
-  font-weight: 400 !important;
+  font-weight: 400;
   font-size: clamp(1.8rem, 5.5vw, 2.2rem) !important;
   line-height: 1.4 !important;
   color: var(--ink-mid) !important;
   margin-top: 20px !important;
 }
 
-/* Rende corsivo ed elegante anche il link cliccabile */
 .gift-link a {
   font-family: 'Great Vibes', cursive !important;
   font-size: 100% !important;
   color: var(--gold) !important;
 }
-/* ─── FIX MODULO ALLERGIE ─── */
 
-/* Applica il look VERDE SALVIA CHIARO a tutti i titoli del modulo (Nome e Allergie) */
 .allergy-form label {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(2.2rem, 6.5vw, 2.8rem) !important;
   text-transform: none !important;
   letter-spacing: 0.02em !important;
-  color: #849d79 !important; /* Verde Salvia CHIARO dell'Hero */
-  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important; /* Stessa ombra */
+  color: #849d79 !important;
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   margin-bottom: 8px !important;
-  margin-top: 20px !important; /* Dà il giusto spazio sopra ogni titolo */
+  margin-top: 20px !important;
   display: block !important;
 }
 
-/* Rimuove il margine superiore solo dal primissimo titolo per non farlo scendere troppo */
-.allergy-form label:first-of-type {
-  margin-top: 0 !important;
-}
-/* 2. Il testo che digita l'utente e il placeholder nel campo "Il tuo nome" */
+.allergy-form label:first-of-type { margin-top: 0 !important; }
+
 .allergy-name-row input,
 .allergy-name-row input::placeholder {
   font-family: 'Great Vibes', cursive !important;
@@ -1063,7 +1010,6 @@ h1, h2, .gift-title {
   color: var(--ink) !important;
 }
 
-/* 3. Il testo che digita l'utente e il placeholder nel box grande delle allergie */
 .allergy-form textarea,
 .allergy-form textarea::placeholder {
   font-family: 'Great Vibes', cursive !important;
@@ -1072,70 +1018,57 @@ h1, h2, .gift-title {
   color: var(--ink) !important;
 }
 
-/* Regolazione altezza minima per dare respiro al corsivo nel box grande */
 .allergy-form textarea {
   min-height: 140px !important;
   padding: 12px 18px !important;
 }
 
-/* 4. Il testo all'interno del bottone "Invia segnalazione" */
 .allergy-submit {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(1.6rem, 4.5vw, 2rem) !important;
   text-transform: none !important;
   letter-spacing: 0.02em !important;
-  padding: 12px 32px !important; /* Calibrato per contenere bene il nuovo font */
+  padding: 12px 32px !important;
 }
 
-/* 5. Il messaggio di conferma o di errore che appare sotto il bottone */
 .allergy-note {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(1.6rem, 4.5vw, 1.9rem) !important;
   margin-top: 10px !important;
 }
-/* ─── FIX SOTTOBLOCCO INFO UTILI (TESTI INTERNI) ─── */
 
-/* Forza il font e la dimensione corretta per le risposte dentro i blocchetti */
 .info-item .a {
   font-family: 'Great Vibes', cursive !important;
-  font-size: clamp(1.8rem, 5.5vw, 2.2rem) !important; /* Dimensione calibrata come gli altri testi descrittivi */
-  line-height: 1.3 !important; /* Diamo il giusto respiro alle righe in corsivo */
+  font-size: clamp(1.8rem, 5.5vw, 2.2rem) !important;
+  line-height: 1.3 !important;
   color: var(--ink-soft) !important;
   font-weight: 400 !important;
 }
 
-/* Gestisce la scritta iniziale "Dress code —" per mantenerla integrata nel flusso */
 .info-item .a strong {
   font-family: 'Great Vibes', cursive !important;
   font-weight: 400 !important;
-  color: var(--ink) !important; /* Un pizzico più scura ed evidente */
+  color: var(--ink) !important;
 }
-/* ─── REGOLAZIONE MICRO-INGRANDIMENTO DATA FOOTER ─── */
 
-/* Alza leggermente la data in fondo alla pagina principale */
 footer .foot-date {
   font-family: 'Great Vibes', cursive !important;
-  font-size: clamp(2rem, 5.5vw, 2.5rem) !important; /* Un filo più grande e visibile */
+  font-size: clamp(2rem, 5.5vw, 2.5rem) !important;
   letter-spacing: 0.02em !important;
   margin-top: 5px !important;
 }
 
-/* Alza leggermente la data/firma in fondo alla lista nozze */
 .gift-body .card .page-foot {
-  font-size: clamp(2rem, 6vw, 2.6rem) !important; /* Coordinata e proporzionata */
+  font-size: clamp(2rem, 6vw, 2.6rem) !important;
   margin-top: 35px !important;
 }
-/* ─── CORRISPONDENZA TOTALE FOOTER COME HERO INITIAL ─── */
 
-/* ─── GEMELLAGGIO TOTALE DEI FOOTER (INDEX & LISTA NOZZE) ─── */
-
-/* Applica lo stesso stile ai nomi in fondo a entrambe le pagine */
 footer .foot-names, 
 .gift-body .card .foot-names {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(2.5rem, 8vw, 3.8rem) !important;
   font-weight: 400 !important;
-  color: #849d79 !important; /* Verde Salvia CHIARO dell'Hero */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   text-transform: none !important;
   margin-bottom: 5px !important;
@@ -1143,12 +1076,11 @@ footer .foot-names,
   display: block !important;
 }
 
-/* Applica lo stesso stile alla data in fondo a entrambe le pagine */
 footer .foot-date, 
 .gift-body .card .foot-date {
   font-family: 'Great Vibes', cursive !important;
   font-size: clamp(2rem, 5.5vw, 2.5rem) !important;
-  color: #849d79 !important; /* Verde Salvia CHIARO dell'Hero */
+  color: #849d79 !important;
   text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.4) !important;
   text-transform: none !important;
   letter-spacing: 0.02em !important;
@@ -1156,35 +1088,27 @@ footer .foot-date,
   display: block !important;
 }
 
-/* Un piccolo reset per dare spazio alla nuova struttura nella card della lista nozze */
-.gift-body .card .foot-names {
-  margin-top: 35px !important;
-} 
-/* ─── COLOR & OPACITY LOOK 100% UNIFICATO: VERDE SALVIA CHIARO ASSOLUTO ─── */
+.gift-body .card .foot-names { margin-top: 35px !important; }
 
-/* 1. Forza colore, ombra e OPACITÀ MASSIMA su ogni singolo testo esistente */
 html, body, div, p, span, h1, h2, h3, h4, a, button, section, label, input, textarea, strong, em, i, b, u {
-  color: #849d79 !important; /* Colore unico */
-  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important; /* Stessa ombra */
-  opacity: 1 !important; /* Elimina l'effetto sbiadito/chiaro su tutti i testi */
-  -webkit-text-fill-color: #849d79 !important; /* Forza il colore pieno anche su sistemi Apple */
+  color: #849d79 !important;
+  text-shadow: 2px 2px 4px rgba(45, 59, 38, 0.3) !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #849d79 !important;
 }
 
-/* 2. Rendi dello stesso colore e intensità anche i link cliccabili (come la lista nozze) */
 a, a:visited, a:hover, a:active {
   color: #849d79 !important;
   opacity: 1 !important;
 }
 
-/* 3. Calibrazione segnaposto (placeholder) per far capire che sono esempi senza sbiadirli col vecchio metodo */
 input::placeholder, textarea::placeholder {
   color: #849d79 !important;
-  opacity: 0.5 !important; /* Questo è l'unico che teniamo un pelo più trasparente per i moduli */
+  opacity: 0.5 !important;
   text-shadow: none !important;
   -webkit-text-fill-color: #849d79 !important;
 }
 
-/* 4. PROTEZIONE BOTTONI: Il testo dentro RSVP, PayPal e Invia deve rimanere bianco puro */
 .paypal-btn, .paypal-btn *, .allergy-submit, .rsvp-btn, .allergy-submit * {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
@@ -1192,7 +1116,6 @@ input::placeholder, textarea::placeholder {
   opacity: 1 !important;
 }
 
-/* 5. Uniformiamo anche le linee e i dettagli grafici */
 .hero-divider span, .div-line span {
   background: linear-gradient(to right, transparent, #849d79, transparent) !important;
   opacity: 1 !important;
@@ -1201,37 +1124,29 @@ input::placeholder, textarea::placeholder {
   color: #849d79 !important;
   opacity: 1 !important;
 }
-/* FIX BACKGROUND MOBILE: SCORRIMENTO INFINITO E NITIDO */
+
 @media (max-width: 768px) {
   body {
     background-image: 
       linear-gradient(rgba(250,248,244,0.55), rgba(250,248,244,0.88)),
       url('Sfondo.png') !important;
-    
-    /* 1. Forza l'immagine a scorrere normalmente con la pagina */
     background-attachment: scroll !important;
-    
-    /* 2. Imposta la larghezza dell'immagine pari al 100% dello schermo del telefono, 
-          ma lascia che l'altezza si calcoli da sola in automatico per non sgranarla */
     background-size: 100% auto !important; 
-    
-    /* 3. Permette all'immagine di ripetersi verso il basso man mano che scrolli */
     background-repeat: repeat-y !important;
     background-position: center top !important;
   }
 }
-/* ─── CAMBIO COLORE BOTTONE PAYPAL: VERDE SICURO ─── */
 
 .paypal-btn {
-  background: #107c41 !important; /* Verde istituzionale, solido e sicuro */
+  background: #107c41 !important;
   box-shadow: 0 2px 12px rgba(16, 124, 65, 0.2) !important;
 }
 
 .paypal-btn:hover {
-  background: #0b5b2f !important; /* Verde leggermente più scuro quando ci passi sopra con il mouse */
+  background: #0b5b2f !important;
   box-shadow: 0 6px 24px rgba(16, 124, 65, 0.35) !important;
 }
-/* ALLINEAMENTO GRAFICO DEL SELETTORE RSVP */
+
 .allergy-form select {
   cursor: pointer;
   box-shadow: none;
